@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HONO Web – Ajánlat</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', Arial, sans-serif;
+    background: #0e0e0e;
+    color: #f0ede6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 64px 48px;
+  }
+
+  .accent-bar {
+    width: 48px;
+    height: 4px;
+    background: #c8f04a;
+    margin-bottom: 28px;
+    border-radius: 2px;
+  }
+
+  .logo {
+    font-family: 'Syne', Arial, sans-serif;
+    font-weight: 800;
+    font-size: 26px;
+    letter-spacing: -0.5px;
+    color: #f0ede6;
+    margin-bottom: 4px;
+  }
+
+  .logo span { color: #c8f04a; }
+
+  .tagline {
+    font-size: 12px;
+    color: #666;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 52px;
+  }
+
+  .headline {
+    font-family: 'Syne', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 18px;
+    color: #f0ede6;
+  }
+
+  .headline-accent {
+    color: #c8f04a;
+    display: block;
+  }
+
+  .sub {
+    font-size: 16px;
+    color: #999;
+    line-height: 1.75;
+    max-width: 560px;
+    margin-bottom: 40px;
+  }
+
+  /* DANGER ZONE */
+  .danger-zone {
+    border: 1.5px solid #6b1a1a;
+    background: #160808;
+    border-radius: 14px;
+    padding: 26px 28px 22px;
+    margin-bottom: 52px;
+  }
+
+  .danger-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .danger-badge {
+    background: #6b1a1a;
+    color: #f5b8b8;
+    font-family: 'Syne', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+  }
+
+  .danger-sub {
+    font-size: 13px;
+    color: #b07070;
+  }
+
+  .danger-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .danger-item {
+    font-size: 14px;
+    color: #c07070;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+    padding: 10px 12px 10px 0;
+    border-top: 0.5px solid #2a1010;
+  }
+
+  .danger-item:nth-child(odd) {
+    padding-right: 20px;
+  }
+
+  .danger-x {
+    color: #c0392b;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+    line-height: 1.5;
+  }
+
+  /* PACKAGES */
+  .packages {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 52px;
+  }
+
+  .pkg {
+    border: 1px solid #252525;
+    border-radius: 16px;
+    padding: 28px 24px;
+    position: relative;
+    background: #131313;
+  }
+
+  .pkg.featured {
+    border-color: #c8f04a;
+    background: #111a07;
+  }
+
+  .pkg-badge {
+    position: absolute;
+    top: -13px;
+    left: 22px;
+    background: #c8f04a;
+    color: #0a0e02;
+    font-family: 'Syne', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .pkg-name {
+    font-family: 'Syne', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 7px;
+    color: #f0ede6;
+  }
+
+  .pkg-desc {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.55;
+  }
+
+  .pkg-price {
+    font-family: 'Syne', Arial, sans-serif;
+    font-weight: 800;
+    font-size: 34px;
+    color: #f0ede6;
+    letter-spacing: -1px;
+    margin-bottom: 3px;
+    line-height: 1;
+  }
+
+  .pkg.featured .pkg-price { color: #c8f04a; }
+
+  .pkg-price-sub {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  .pkg-divider {
+    height: 1px;
+    background: #1e1e1e;
+    margin-bottom: 18px;
+  }
+
+  .pkg.featured .pkg-divider { background: #243310; }
+
+  .pkg-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .pkg-features li {
+    font-size: 13px;
+    color: #aaa;
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    line-height: 1.45;
+  }
+
+  .pkg-features li::before {
+    content: "✓";
+    color: #c8f04a;
+    font-weight: 700;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .pkg-time {
+    margin-top: 22px;
+    font-size: 12px;
+    color: #444;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .pkg-time strong { color: #777; }
+
+  /* WHY */
+  .why-section { margin-bottom: 52px; }
+
+  .section-label {
+    font-family: 'Syne', Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #444;
+    margin-bottom: 18px;
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .why-item {
+    padding: 20px 18px;
+    background: #131313;
+    border: 1px solid #1c1c1c;
+    border-radius: 12px;
+  }
+
+  .why-num {
+    font-family: 'Syne', Arial, sans-serif;
+    font-weight: 800;
+    font-size: 26px;
+    color: #c8f04a;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .why-label {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.5;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: #131313;
+    border: 1px solid #252525;
+    border-radius: 16px;
+    padding: 32px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .cta-text h3 {
+    font-family: 'Syne', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+    margin-bottom: 7px;
+    color: #f0ede6;
+    line-height: 1.3;
+  }
+
+  .cta-text p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  .cta-contact {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .cta-contact a {
+    display: block;
+    font-size: 14px;
+    color: #c8f04a;
+    text-decoration: none;
+    margin-bottom: 6px;
+    transition: opacity 0.2s;
+  }
+
+  .cta-contact a:hover { opacity: 0.75; }
+
+  .footer-note {
+    font-size: 12px;
+    color: #333;
+    border-top: 1px solid #181818;
+    padding-top: 24px;
+    line-height: 1.7;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .page { padding: 40px 24px; }
+    .headline { font-size: 28px; }
+    .packages { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .danger-grid { grid-template-columns: 1fr; }
+    .cta-section { flex-direction: column; align-items: flex-start; }
+    .cta-contact { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="accent-bar"></div>
+  <div class="logo">HONO<span>.</span>web</div>
+  <div class="tagline">Vállalkozásoknak</div>
+
+  <h1 class="headline">
+    Online jelenlét
+    <span class="headline-accent">ma már nem opció.</span>
+  </h1>
+  <p class="sub">Az első benyomás ma online történik. Ha nem vagy jelen a neten, a potenciális ügyfeleid észre sem vesznek — mielőtt egyáltalán esélyed lenne megmutatni, mit tudsz.</p>
+
+  <div class="danger-zone">
+    <div class="danger-header">
+      <div class="danger-badge">&#9888; Danger zone</div>
+      <div class="danger-sub">Ha nincs weboldalad, ezeket kockáztatod:</div>
+    </div>
+    <div class="danger-grid">
+      <div class="danger-item"><span class="danger-x">✕</span> Bizalom elvesztése — az ügyfelek kételkednek</div>
+      <div class="danger-item"><span class="danger-x">✕</span> Elmaradt megkeresések — nem tudnak írni vagy hívni</div>
+      <div class="danger-item"><span class="danger-x">✕</span> Láthatatlanság Google-ön — nem találnak rá</div>
+      <div class="danger-item"><span class="danger-x">✕</span> Nincs hova irányítani az ajánlást</div>
+      <div class="danger-item"><span class="danger-x">✕</span> Konkurencia előnye — ők ott vannak, te nem</div>
+      <div class="danger-item"><span class="danger-x">✕</span> Árak, nyitvatartás nem elérhető online</div>
+    </div>
+  </div>
+
+  <div class="packages">
+    <div class="pkg">
+      <div class="pkg-name">Landing oldal</div>
+      <div class="pkg-desc">Egy ütős oldal, ami elmondja ki vagy és hogyan lehet elérni.</div>
+      <div class="pkg-price">49 999 Ft</div>
+      <div class="pkg-price-sub">egyszeri díj</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li>1 oldalas, mobilra optimalizált</li>
+        <li>Bemutatkozó szöveg, elérhetőség</li>
+        <li>Térkép és közösségi linkek</li>
+        <li>Alapvető SEO beállítás</li>
+        <li>Domain és tárhely az első évre</li>
+      </ul>
+      <div class="pkg-time">⏱ <strong>3–5 munkanap</strong></div>
+    </div>
+
+    <div class="pkg featured">
+      <div class="pkg-badge">Legtöbbet választott</div>
+      <div class="pkg-name">Bemutatkozó weboldal</div>
+      <div class="pkg-desc">Teljes weboldal, amely bizalmat épít és ügyfeleket hoz.</div>
+      <div class="pkg-price">149 999 Ft</div>
+      <div class="pkg-price-sub">egyszeri díj</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li>3–5 aloldal (Főoldal, Rólunk, Szolgáltatások, Kapcsolat)</li>
+        <li>Mobilra és tabletre optimalizálva</li>
+        <li>Galéria vagy portfólió szekció</li>
+        <li>SEO alapbeállítások</li>
+        <li>Domain és tárhely az első évre</li>
+        <li>Kisebb módosítás 30 napig ingyen</li>
+      </ul>
+      <div class="pkg-time">⏱ <strong>7–10 munkanap</strong></div>
+    </div>
+  </div>
+
+  <div class="why-section">
+    <div class="section-label">Miért HONO Web?</div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-num">72%</div>
+        <div class="why-label">a vásárlók online keresik meg a helyi vállalkozásokat</div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">5 nap</div>
+        <div class="why-label">alatt online vagy a landing csomaggal</div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">Első<br>lépés</div>
+        <div class="why-label">aki hamarabb lép online, az szerzi meg az ügyfelet</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <div class="cta-text">
+      <h3>Érdekel? Írj, és 24 órán belül válaszolok.</h3>
+      <p>Egyeztetünk, átbeszéljük az igényeket — kötelezettség nélkül.</p>
+    </div>
+    <div class="cta-contact">
+      <a href="mailto:h.norbert.ev@gmail.com">h.norbert.ev@gmail.com</a>
+      <a href="tel:+36302847895">+36 30 284 7895</a>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    HONO Web · Weboldal készítés vállalkozásoknak · Az ajánlat tájékoztató jellegű. A domain és tárhely szolgáltatások harmadik féltől kerülnek biztosításra, az első éves időszak után megújítási díj merülhet fel.
+  </div>
+
+</div>
+</body>
+</html>
